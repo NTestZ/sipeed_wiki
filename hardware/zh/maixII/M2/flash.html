@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html id="[]" class=" md_page ">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="['MaixII', ' MaixPy3', ' Python', ' Python3', ' M2dock']">
+    <meta name="description" content="">
+    <meta name="generator" content="teedoc">
+    <meta name="theme" content="teedoc-plugin-theme-default">
+    
+    <meta name="markdown-generator" content="teedoc-plugin-markdown-parser">
+    
+    <link rel="stylesheet" href="/static/css/theme_default/prism.min.css" type="text/css"/>
+    
+    <link rel="stylesheet" href="/static/css/theme_default/viewer.min.css" type="text/css"/>
+    
+    <link rel="stylesheet" href="/static/css/theme_default/dark.css" type="text/css"/>
+    
+    <link rel="stylesheet" href="/static/css/theme_default/light.css" type="text/css"/>
+    
+    <link rel="stylesheet" href="/static/css/custom.css" type="text/css"/>
+    
+    <script src="/static/js/theme_default/split.js"></script>
+    
+    <script src="/static/js/theme_default/jquery.min.js"></script>
+    
+    <script src="/static/js/theme_default/pre_main.js"></script>
+    
+    <link rel="stylesheet" href="/static/css/search/style.css" type="text/css"/>
+    
+    <script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?9cb07365544a53067c56c346c838181a";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    
+    <title>MaixII M2dock 烧录系统 - Sipeed Wiki </title>
+</head>
+<body>
+    <div id="navbar">
+        <div id="navbar_menu">
+            <a class="site_title" href="/">
+                
+                    <img class="site_logo" src="/static/image/logo.svg" alt="sipeed wiki logo">
+                
+                
+                    <h2>wiki</h2>
+                
+        </a>
+            <a id="navbar_menu_btn"></a>
+        </div>
+        <div id="navbar_items">
+            <div>
+                <ul id="nav_left">
+<li class=""><a  href="/">首页</a></li>
+<li class=""><a target="_blank" href="https://www.sipeed.com">矽速官网</a></li>
+<li class="sub_items "><a >开源软件</a><ul><li class=""><a  href="/soft/maixpy/zh/">MaixPy</a></li>
+<li class=""><a  href="/soft/maixpy3/zh/">MaixPy3</a></li>
+<li class=""><a  href="/soft/maixduino/zh/">MaixDuino</a></li>
+<li class=""><a  href="/soft/Lichee/zh/">Lichee</a></li>
+<li class=""><a  href="/soft/longan/zh/index.html">Longan</a></li>
+<li class=""><a  href="/soft/Tang/zh/index_bak.html">Tang</a></li>
+</ul>
+</li>
+<li class="sub_items "><a >开源硬件</a><ul><li class=""><a  href="/hardware/zh/maix/index.html">Maix-I</a></li>
+<li class=""><a  href="/hardware/zh/maixII/index.html">Maix-II</a></li>
+<li class=""><a  href="/hardware/zh/lichee/index.html">Lichee Pi</a></li>
+<li class=""><a  href="/hardware/zh/tang/index.html">Tang</a></li>
+<li class=""><a  href="/hardware/zh/longan/index.html">Longan</a></li>
+</ul>
+</li>
+<li class="sub_items "><a >商业产品</a><ul><li class=""><a  href="/hardware/maixface/zh/">Maix Face</a></li>
+</ul>
+</li>
+<li class="sub_items "><a >云平台</a><ul><li class=""><a target="_blank" href="https://www.maixhub.com">Maixhub 模型训练平台</a></li>
+<li class=""><a target="_blank" href="https://www.maixhub.com/onlinecompiler">固件在线编译</a></li>
+</ul>
+</li>
+<li class=""><a  href="/community.html">社区</a></li>
+<li class=""><a  href="/store.html">商城</a></li>
+</ul>
+
+            </div>
+            <div>
+                <ul id="nav_right">
+<li class="sub_items "><a  href="">Language: 中文</a><ul><li class="active"><a  href="/hardware/zh/">中文</a></li>
+<li class=""><a  href="/en/">English</a></li>
+</ul></li>
+</ul>
+
+                <ul class="nav_plugins"><li><a id="themes" class="light"></a></li></ul><ul class="nav_plugins"><li><a id="search"><span class="icon"></span><span class="placeholder">搜索</span>
+                            <div id="search_hints">
+                                <span id="search_input_hint">输入关键词，多关键词空格隔开</span>
+                                <span id="search_loading_hint">正在加载，请稍候。。。</span>
+                                <span id="search_download_err_hint">下载文件失败，请刷新重试或检查网络</span>
+                                <span id="search_other_docs_result_hint">来自其它文档的结果</span>
+                                <span id="search_curr_doc_result_hint">当前文档搜索结果</span>
+                            </div></a></li></ul>
+            </div>
+        </div>
+    </div>
+    <div id="wrapper">
+        <div id="sidebar_wrapper">
+            <div id="sidebar">
+                <div id="sidebar_title">
+                    
+                </div>
+                <ul class="show">
+<li class="not_active with_link"><a href="/hardware/zh/index.html"><span class="label">Sipeed 硬件资料导航</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/index.html"><span class="label">Maix-I</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/maix/core_module.html"><span class="label">M1/M1w</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/M1n.html"><span class="label">M1n</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/develop_kit_board.html"><span class="label">MaixPy 开发板</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_go.html"><span class="label">Maix Go</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/Maix_dock.html"><span class="label">Maix Dock(M1/M1W)</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_bit.html"><span class="label">Maix Bit</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_duino.html"><span class="label">Maix Duino</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_nano.html"><span class="label">Maix Nano</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_cube.html"><span class="label">Maix Cube</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maix/maixpy_develop_kit_board/maix_Amigo.html"><span class="label">Maix Amigo</span><span class=""></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="active_parent no_link"><a><span class="label">Maix-II</span><span class="sub_indicator"></span></a><ul class="show">
+<li class="active_parent with_link"><a href="/hardware/zh/maixII/M2/introduce.html"><span class="label">M2</span><span class="sub_indicator"></span></a><ul class="show">
+<li class="active_parent with_link"><a href="/hardware/zh/maixII/M2/resources.html"><span class="label">MaixII-Dock</span><span class="sub_indicator"></span></a><ul class="show">
+<li class="active with_link"><a href="/hardware/zh/maixII/M2/flash.html"><span class="label">烧录系统</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2/drive.html"><span class="label">访问串口</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2/config.html"><span class="label">配置系统</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2/usage.html"><span class="label">上手使用</span><span class=""></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">M2S</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2A/index.html"><span class="label">M2A</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2A/MaixSense/maixsense.html"><span class="label">MaixSense简介</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2A/MaixSense/start/start.html"><span class="label">烧录系统</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2A/MaixSense/start/buildsystem.html"><span class="label">配置系统</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/maixII/M2A/MaixSense/start/first.html"><span class="label">上手使用</span><span class=""></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">LicheePi (Linux)</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/lichee/Zero/index.html"><span class="label">LicheePi Zero</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/lichee/One/index.html"><span class="label">LicheePi One</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/lichee/Nano/index.html"><span class="label">LicheePi Nano</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/lichee/ZeroPlus/index.html"><span class="label">LicheePi ZeroPlus</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label"> Tang</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">Tang Premier</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">Tang Nano</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">Longon</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/longan/Nano/index.html"><span class="label">Longon Nano</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/longan/Zero/index.html"><span class="label">Longon Zero</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">SP-MOD外设模组</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">扩张接口 Grove</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">Grove-RGB LED</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">扩展接口SP-MOD</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">转接板类</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_extender.html"><span class="label">SP-Extender</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_grove.html"><span class="label">SP-Grove</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_fpc.html"><span class="label">SP-FPC</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_micarray.html"><span class="label">SP-MicArray</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_joystick.html"><span class="label">SP-JotStick</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">SP-JotStick2</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_servo.html"><span class="label">SP-Servo</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_type_c.html"><span class="label">SP-Type-C</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">传感器类</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_weather.html"><span class="label">SP-Weather</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_tof.html"><span class="label">SP-TOF-1P</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">通信类</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_bt.html"><span class="label">SP-BT</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_lora.html"><span class="label">SP-LoRa</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_psram.html"><span class="label">SP-PSRAM</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_rfid.html"><span class="label">SP-RFID</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_ethernet.html"><span class="label">SP-Ethernet</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">显示类</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_lcd1.14.html"><span class="label">SP-LCD 1.14</span><span class=""></span></a></li>
+<li class="not_active with_link"><a href="/hardware/zh/modules_spmod/spmod_eink.html"><span class="label">SP-Eink</span><span class=""></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">模块&&调试器</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">调试器</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">Sipeed RV Debugger</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">双串口 USB 模块</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">模块</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">摄像头</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">GC0328</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">双摄像头模块(GC0328)</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">OV7740</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">OV2640</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">OV2640-M12</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">双摄像头模块(OV2640)</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">麦克风模块</span><span class="sub_indicator sub_indicator_collapsed"></span></a><ul class="">
+<li class="not_active no_link"><a><span class="label">单麦克风模块</span><span class=""></span></a></li>
+<li class="not_active no_link"><a><span class="label">麦克风阵列</span><span class=""></span></a></li>
+</ul>
+</li>
+<li class="not_active no_link"><a><span class="label">LCD 1.3/2.4/2.8/4.3/5 寸</span><span class=""></span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <div id="sidebar_splitter">
+            </div>
+        </div>
+        <div id="article">
+            <div id="menu_wrapper">
+                <div id="menu">
+                </div>
+            </div>
+            <div id="content_wrapper">
+                <div id="content_body">
+                    <div id="article_head">
+                        <div id="article_title">
+                            <h1>MaixII M2dock 烧录系统</h1>
+                        </div>
+                        <div id="article_tags">
+                            <ul>
+                            
+                            </ul>
+                        </div>
+                        <div id="article_info">
+                        <div>
+                            <span class="article_author">
+                                
+                            </span>
+                            <span class="article_date">
+                                
+                            </span>
+                        </div>
+                        <div>
+                            
+                            <div id="source_link">
+                                <a href="https://github.com/sipeed/sipeed_wiki/blob/main/docs/hardware/zh/maixII/M2/flash.md" target="_blank">
+                                    编辑本页}
+                                </a>
+                            </div>
+                            
+                        </div>
+                        </div>
+                    </div>
+                    <div id="article_content">
+                        <blockquote><p>！！！一定要严格按照步骤操作！！！请使用大于 1G 的 TF/SD 卡进行烧录，开源版本要求使用 TF/SD 卡来启动系统。</p>
+</blockquote>
+<p>V831 为全志的 SOC， 所以 Windwos 使用 <strong>PhoenixSuit</strong>, Linux 上使用 <strong>Livesuit</strong> 烧录镜像文件。</p>
+<ul>
+<li><p>从下载站获取最新的 V831 系统镜像 <a href="https://dl.sipeed.com/shareURL/MaixII/SDK/release">SDK_MaixII/release</a> ，找不到就搜索 V831 获取最新的镜像。</p>
+</li>
+<li><p>下载站中有连个同版本不同大小的镜像系统，文件较大的镜像是需要使用dd命令进行系统的烧录。（目前只能在linux系统上进行系统的烧录--2021.06.26）</p>
+</li>
+<li><p>解压 V831 镜像压缩包，得到一个 xxxx.img 文件。</p>
+</li>
+<li><p>从网上获取 PhoenixSuit(Windows) 烧录工具。</p>
+<ul>
+<li><a href="https://www.baidu.com/s?wd=PhoenixSuit">baidu-PhoenixSuit</a></li>
+<li><a href="https://www.bing.com/search?q=PhoenixSuit&amp;FORM=BESBTB&amp;mkt=zh-CN">bing-PhoenixSuit</a> </li>
+<li><a href="https://github.com/colorfulshark/PhoenixSuit">github-PhoenixSuit</a></li>
+<li><a href="https://phoenixsuit.en.lo4d.com/windows">lo4d-PhoenixSuit</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="镜像文件命名方式">镜像文件命名方式</h2>
+<p>对于V831的镜像文件名字是有对应的规则，以后大家可以根据自己的需求来进行下载</p>
+<p>就拿<code>maixpy3-v831-800m-64m-512m-sp2305_240240_20210729</code>这镜像文件来说</p>
+<table>
+<thead><tr>
+<th>名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>maixpy3</td>
+<td>支持MaixPy3进行开发</td>
+</tr>
+<tr>
+<td>v831</td>
+<td>支持的V831芯片上运行</td>
+</tr>
+<tr>
+<td>800m</td>
+<td>主频为800MHz</td>
+</tr>
+<tr>
+<td>64m</td>
+<td>RAM为64MB</td>
+</tr>
+<tr>
+<td>512m</td>
+<td>对于tf卡容量的最低要求</td>
+</tr>
+<tr>
+<td>sp2305</td>
+<td>适用于型号为sp2305的摄像头</td>
+</tr>
+<tr>
+<td>240240</td>
+<td>屏幕的输出分辨率为240*240</td>
+</tr>
+<tr>
+<td>20210729</td>
+<td>镜像的发布时间</td>
+</tr>
+</tbody>
+</table>
+<blockquote><p>如果是适合使用dd进行烧录，会在最前面多个dd</p>
+</blockquote>
+<h2 id="Windows-上使用-PhoenixCard烧录镜像">Windows 上使用 PhoenixCard烧录镜像</h2>
+<p>PhoenixSuit和PhoenixCard是全志芯片常用的两种烧录工具，一个是USB烧录，另一个是sd卡烧录。对于需要烧录到flash中的，常用PhoenixSuit，而使用sd卡的在用PhoenixSuit需要安装USB驱动等一系列的麻烦操作，就可以使用PhoenixCard进行烧录。</p>
+<h3 id="获取烧录工具">获取烧录工具</h3>
+<p>PhoenixCard下载站连接：<a href="https://dl.sipeed.com/shareURL/MaixII/SDK/tools">下载站 - Sipeed</a></p>
+<p>系统镜像下载站连接：<a href="https://dl.sipeed.com/shareURL/MaixII/SDK/release">下载站 - Sipeed</a></p>
+<p>SD Card Formatter下载连接：<a href="https://www.sdcard.org/downloads/formatter/eula_windows/SDCardFormatterv5_WinEN.zip">SD Card Formatter</a></p>
+<h3 id="系统烧录">系统烧录</h3>
+<p>插入sd卡，打开SD Card Formatter</p>
+<p><img src="https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/image-20210802102810041.png" alt="image-20210802102810041"></p>
+<p>Refresh后点击Format后格式化，注意选中对应的sd卡；</p>
+<p>打开PhoenixCard,固件处选择对应镜像包（下载镜像后需要先解压），然后刷新盘符，如果未找到可以尝试重新插拔下SD卡，勾选启动卡，点击烧卡。</p>
+<p><img src="https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/image-20210802104155132.png" alt="image-20210802104155132"></p>
+<p>大概30s后，烧录完成。</p>
+<p><img src="https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/image-20210802104608721.png" alt="image-20210802104608721"></p>
+<h2 id="Linux(Ubuntu)-使用-Livesuit-烧录">Linux(Ubuntu) 使用 Livesuit 烧录</h2>
+<blockquote><p><a href="https://linux-sunxi.org/LiveSuit">https://linux-sunxi.org/LiveSuit</a></p>
+<p><a href="https://www.codenong.com/cs105573875/">ubuntu 安装 LiveSuit 刷机工具</a></p>
+<p><a href="https://github.com/QinYUN575/allwinner-livesuit.git">https://github.com/QinYUN575/allwinner-livesuit.git</a></p>
+</blockquote>
+<h3 id="安装烧录工具-Livesuit">安装烧录工具 Livesuit</h3>
+<blockquote><p><strong>每次更新系统 linux kernel 之后需要重新安装软件</strong></p>
+</blockquote>
+<ol>
+<li>安装依赖 dkms</li>
+</ol>
+<pre><code class="lang-shell">sudo apt install dkms
+</code></pre>
+<ol>
+<li>安装 libpng1.2（一定要使用这个版本）</li>
+</ol>
+<pre><code class="lang-shell">wget http://archive.ubuntu.com/ubuntu/pool/main/libp/libpng/libpng_1.2.54.orig.tar.xz
+tar xvf  libpng_1.2.54.orig.tar.xz
+</code></pre>
+<pre><code class="lang-shell">cd libpng-1.2.54
+./autogen.sh
+./configure
+make -j8
+sudo make install
+</code></pre>
+<p>更新链接库:</p>
+<pre><code class="lang-shell">sudo ldconfig
+</code></pre>
+<ol>
+<li>安装 <strong>livesuit</strong></li>
+</ol>
+<pre><code class="lang-shell">git clone --recursive https://github.com/QinYUN575/allwinner-livesuit.git
+cd allwinner-livesuit
+chmod +x livesuit_installer.run
+sudo ./livesuit_installer.run
+</code></pre>
+<h3 id="使用-Livesuit-烧录">使用 Livesuit 烧录</h3>
+<p><code>sudo livesuit</code> 打开烧录工具，并点击“固件”选择镜像文件</p>
+<p><img src="./asserts/flash_15.png" alt=""></p>
+<p>不插入 SD 卡，将 V831 USB OTG 接口连接到 PC, 提示是否格式化分区，这时候插入 SD 卡，之后点击 <code>YES</code></p>
+<p><img src="./asserts/flash_17.png" alt=""></p>
+<p>等待烧录完成，提示“固件升级成功”，即可断开 USB ，至此固件烧录完毕</p>
+<p><img src="./asserts/flash_19.png" alt=""></p>
+<p><img src="./asserts/flash_21.png" alt=""></p>
+<blockquote><p>以上烧录方式适合在镜像文件较小的那个（非dd版本）</p>
+</blockquote>
+<h2 id="Windows使用dd烧录">Windows使用dd烧录</h2>
+<p><a href="https://dl.sipeed.com/shareURL/MaixII/SDK/release">下载dd镜像</a>带有xx-dd文件即可</p>
+<p>下载<a href="https://www.balena.io/etcher/" title="Etcher">Etcher</a></p>
+<p>下载<a href="https://www.sdcard.org/downloads/formatter/eula_windows/SDCardFormatterv5_WinEN.zip" title="SDCardFormatter">SD Card Formatter</a></p>
+<p>首先使用SD Card Formatter<a href="#-2">格式化</a>sd卡，然后打开软件，点击<code>Flash from file</code>,选中dd镜像包，然后点击Select target选中sd卡，最后点击Flash烧录。</p>
+<p><img src="https://raw.githubusercontent.com/USTHzhanglu/picture/main/img/image-20210803140304732.png" alt="image-20210803140304732"></p>
+<p>烧录完毕后，即可放入M2 dock中运行。</p>
+<h3 id="分区扩容（dd）">分区扩容（dd）</h3>
+<p>使用dd镜像后，会有部分储存空间未被使用，这时候需要扩容分区进行使用。</p>
+<p>linux下可以用fdisk或者GParted扩容，windows下可以尝试使用Diskgenus扩容（不推荐使用windows，可能会造成一些问题）</p>
+<p>这里以fdisk示例，其他方法请自行摸索。</p>
+<p>将sd卡插入电脑，执行<code>sudo fdisk -l</code>，查看sd卡分区位置，如下即为/dev/sdb；</p>
+<pre><code>/dev/sdb1   49152  49663     512  256K Microsoft basic data
+/dev/sdb2   49664  61951   12288    6M Microsoft basic data
+/dev/sdb3   61952 324095  262144  128M Microsoft basic data
+/dev/sdb4  324096 487935  163840   80M Microsoft basic data
+</code></pre>
+<p>然后执行以下命令：</p>
+<pre><code>##使用fdisk更改/dev/sdb分区；
+sudo fdisk /dev/sdb 
+
+Welcome to fdisk (util-linux 2.36.1).
+Changes will remain in memory only, until you decide to write them.
+Be careful before using the write command.
+
+##d删除分区，，一路回车即可；
+Command (m for help): d
+Partition number (1-5, default 5): 
+
+Partition 5 has been deleted.
+##创建分区，一路回车即可；
+Command (m for help): n
+Selected partition 5
+First sector (487936-7744508, default 489472): 
+Last sector, +/-sectors or +/-size{K,M,G,T,P} (489472-7744508, default 7744508): 
+
+Created a new partition 5 of type 'Linux filesystem' and of size 3.5 GiB.
+
+##专家模式
+Command (m for help): x
+
+##创建分区名称
+Expert command (m for help): n
+Partition number (1-5, default 5): 
+
+New name: UDISK
+
+Partition name changed from '' to 'UDISK'.
+
+##保存分区；
+Command (m for help): w
+The partition table has been altered.
+Calling ioctl() to re-read partition table.
+Syncing disks.
+</code></pre>
+<p>插入M2dock，验证：</p>
+<pre><code>root@sipeed:/# fdisk -l
+Found valid GPT with protective MBR; using GPT
+
+Disk /dev/mmcblk0: 7626752 sectors, 3724M
+Logical sector size: 512
+Disk identifier (GUID): ab6f3888-569a-4926-9668-80941dcb40bc
+Partition table holds up to 8 entries
+First usable sector is 49152, last usable sector is 7626748
+
+Number  Start (sector)    End (sector)  Size Name
+     1           49152           49663  256K env
+     2           49664           61951 6144K boot
+     3           61952          717311  320M rootfs
+     4          717312          881151 80.0M swap
+     5          882688         7626748 3292M UDISK
+</code></pre>
+<h2 id="Linux(Ubuntu)-使用-dd镜像-烧录">Linux(Ubuntu) 使用 dd镜像 烧录</h2>
+<p><a href="https://dl.sipeed.com/shareURL/MaixII/SDK/release">下载dd镜像</a>带有xx-dd.img文件即可</p>
+<p>使用dd命令之前，通过命令 <code>fdisk -l</code> 查看tf卡的名称</p>
+<p><img src="./asserts/dd_1.png" alt="dd_1"></p>
+<p>dd命令烧录</p>
+<pre><code class="lang-base">dd if=sipedd-v8310-210606-dd.img of=/dev/sdd
+</code></pre>
+<p><img src="./asserts/dd_2.png" alt="dd_2"><br>
+出现为烧录成功</p>
+<p>或者直接使用镜像恢复软件打开dd镜像文件</p>
+<p>右键打开dd镜像，选择用其他应用程序打开，选择镜像恢复</p>
+<p><img src="./asserts/dd_3.png" alt="dd_3"><br>
+<img src="./asserts/dd_4.png" alt="dd_3"></p>
+<p>点击开始恢复，即可烧录成功</p>
+<h2 id="常见问题：">常见问题：</h2>
+<p>系统烧录步骤严格按照文档要求，先打开软件，拔 SD 卡后插入电脑，等待提示确认后再插入 SD 卡自动完成安装。</p>
+<p>《<a href="https://askubuntu.com/questions/895897/error-while-loading-shared-libraries-libpng12-so-0">error while loading shared libraries: libpng12.so.0</a>》</p>
+
+                    </div>
+                </div>
+                <div id="previous_next">
+                    <div id="previous">
+                        
+                        <a href="/hardware/zh/maixII/M2/resources.html">
+                            <span class="icon"></span>
+                            <span class="label">MaixII-Dock</span>
+                        </a>
+                        
+                    </div>
+                    <div id="next">
+                        <a href="/hardware/zh/maixII/M2/drive.html">
+                            <span class="label">访问串口</span>
+                            <span class="icon"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="toc">
+                <div id="toc_content">
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <a id="to_top" href="#"></a>
+    <div id="doc_footer">
+        <div id="footer">
+            <div id="footer_top">
+                <ul>
+<li><a>链接</a><ul><li><a target="_blank" href="https://www.sipeed.com">Sipeed</a></li>
+<li><a target="_blank" href="https://bbs.sipeed.com/">BBS 论坛</a></li>
+<li><a target="_blank" href="https://maixhub.sipeed.com/">Maixhub</a></li>
+<li><a target="_blank" href="https://sipeed.taobao.com/">Sipeed 淘宝</a></li>
+<li><a target="_blank" href="https://github.com/neutree/teedoc">网站使用 teedoc 生成</a></li>
+</ul>
+</li>
+<li><a>网站统计</a><ul><li><a target="_blank" href="https://tongji.baidu.com/web/welcome/ico?s=9cb07365544a53067c56c346c838181a">百度统计</a></li>
+<li><a  href="/sitemap.xml">网站地图</a></li>
+</ul>
+</li>
+<li><a>源码</a><ul><li><a target="_blank" href="https://github.com/sipeed/sipeed_wiki">文档源文件</a></li>
+<li><a target="_blank" href="https://github.com/sipeed">开源项目源码</a></li>
+</ul>
+</li>
+<li><a>关注我们</a><ul><li><a target="_blank" href="https://github.com/sipeed">github</a></li>
+<li><a target="_blank" href="https://twitter.com/SipeedIO">twitter</a></li>
+<li><a target="_blank" href="https://sipeed.taobao.com/">淘宝</a></li>
+<li><a  href="/community.html">更多</a></li>
+</ul>
+</li>
+<li><a>联系我们</a><ul><li><a>电话: +86 0755-27808509</a>
+</li>
+<li><a>商业支持: support@sipeed.com</a>
+</li>
+<li><a>地址: 深圳市宝安区新湖路4008号蘅芳科技办公大厦A座-2101C</a>
+</li>
+<li><a  href="/join_us.html">加入我们</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+            <div id="footer_bottom">
+                <ul>
+<li><a target="_blank" href="https://www.sipeed.com">©2018-2021 深圳矽速科技有限公司</a></li>
+<li><a target="_blank" href="https://beian.miit.gov.cn/#/Integrated/index">粤ICP备19015433号-1</a></li>
+</ul>
+
+            </div>
+        </div>
+    </div>
+</body>
+
+    <script src="/static/js/theme_default/tocbot.min.js"></script>
+
+    <script src="/static/js/theme_default/main.js"></script>
+
+    <script src="/static/js/theme_default/viewer.min.js"></script>
+
+    <script src="/static/css/theme_default/prism.min.js"></script>
+
+    <script src="/static/js/custom.js"></script>
+
+    <script src="/static/js/search/search_main.js"></script>
+
+</html>
