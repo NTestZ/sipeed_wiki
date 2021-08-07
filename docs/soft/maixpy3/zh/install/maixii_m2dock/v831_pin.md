@@ -186,5 +186,5 @@ while True:
 ```
 
 ```python
-python test_blink.py gpiochip0 238
+python test_blink.py gpiochip1 238
 ```
